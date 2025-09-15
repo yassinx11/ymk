@@ -1,62 +1,68 @@
-ymk_ai
-Welcome to ymk_ai, an innovative AI project designed to [briefly describe the purpose or goal of your AI, e.g., "simplify task automation with machine learning" or "provide intelligent text analysis"]. This repository contains the source code and resources for the ymk_ai project.
-Table of Contents
+# Chatbot Knowledge Base
 
-Overview
-Features
-Installation
-Usage
-Contributing
-License
-Contact
+This project is a simple chatbot that uses a JSON-based knowledge base to provide answers to user questions. The chatbot can also learn new questions and answers from user input.
 
-Overview
-ymk_ai is a [describe what the AI does, e.g., "machine learning model for text classification" or "conversational AI for customer support"]. It aims to [state the problem it solves or its unique value, e.g., "streamline workflows" or "enhance user interaction with natural language processing"].
-Features
+## Features
 
-[Feature 1: e.g., "Fast and accurate text processing"]
-[Feature 2: e.g., "Customizable model parameters"]
-[Feature 3: e.g., "Support for multiple languages"]
-[Add more features specific to your AI]
+- Loads a knowledge base from a JSON file
+- Finds the best match for a user's question based on string similarity
+- Provides an answer from the knowledge base if a match is found
+- Allows users to teach the chatbot new questions and answers
+- Saves the updated knowledge base to the JSON file
 
-Installation
-To get started with ymk_ai, follow these steps:
+## Usage
 
-Clone the repository:
-git clone https://github.com/yassinx11/ymk.git
-cd ymk
+1. Run the `main.py` script to start the chatbot.
+2. Type your questions, and the chatbot will respond with the best matching answer from the knowledge base.
+3. If the chatbot doesn't know the answer, it will prompt you to provide the answer. The new question-answer pair will be saved to the knowledge base.
+4. Type `bye` to exit the chatbot.
 
+## Knowledge Base Format
 
-Install dependencies: [Specify dependencies, e.g., Python, Node.js, or specific libraries like numpy, tensorflow, etc.]
-pip install -r requirements.txt
+The knowledge base is stored in a JSON file named `knowledgebase.json`. The file contains a list of questions and their corresponding answers:
 
-[Or provide other installation commands if applicable]
+```json
+{
+  "questions": [
+    {
+      "question": "hi",
+      "answer": "Hi, how can I help you today?"
+    },
+    {
+      "question": "hello",
+      "answer": "Hello! What can I do for you?"
+    },
+    {
+      "question": "what is python",
+      "answer": "Python is a high-level programming language known for its simplicity and readability."
+    },
+    ...
+  ]
+}
+```
 
-Set up environment: [Add any setup steps, e.g., "Create a virtual environment" or "Configure API keys".]
+You can add, modify, or remove questions and answers in this file to customize the chatbot's knowledge base.
 
+## Code Structure
 
-Usage
-[Provide examples of how to use your AI. For example:]
-python main.py --input "sample text" --model ymk_model
+The main functionality of the chatbot is implemented in the `main.py` file, which includes the following functions:
 
-[Or describe a sample use case, e.g., "Run the script to process a text file and output predictions."]
-See examples/ for sample inputs and outputs.
-Contributing
-Contributions are welcome! To contribute:
+- `load_knowledge_base(file_path: str) -> dict`: Loads the knowledge base from a JSON file.
+- `save_knowledge_base(file_path: str, data: dict)`: Saves the updated knowledge base to a JSON file.
+- `find_best_match(user_question: str, questions: list[str]) -> str | None`: Finds the best matching question from the knowledge base based on string similarity.
+- `get_answer_for_question(question: str, knowledge_base: dict) -> str | None`: Retrieves the answer for a given question from the knowledge base.
+- `chatbot()`: Runs the chatbot loop, handling user input and updating the knowledge base.
 
-Fork the repository.
-Create a new branch (git checkout -b feature/your-feature).
-Commit your changes (git commit -m 'Add your feature').
-Push to the branch (git push origin feature/your-feature).
-Open a pull request.
+## Dependencies
 
-Please read CONTRIBUTING.md for more details.
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-Contact
-For questions or feedback, reach out to:
+This project requires the following Python packages:
 
-GitHub: yassinx11
-Email: [your-email@example.com]
+- `json`
+- `os`
+- `difflib`
 
-Thank you for exploring ymk_ai!
+These dependencies are included in the standard Python library and do not require any additional installation.
+
+## Contributing
+
+If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request on the project's GitHub repository.
